@@ -7,6 +7,8 @@
     <Company>LightVPN Technologies</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>The first wrapper for pritunl api in c#.</Description>
+    <RepositoryUrl>https://github.com/LightTechnologies/Pritunl.Net</RepositoryUrl>
+    <PackageProjectUrl>https://lightvpn.org</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

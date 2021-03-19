@@ -9,6 +9,130 @@
             Exception that occurs whenever pritunl returns bad 
             </summary>
         </member>
+        <member name="T:Pritunl.Wrapper.Interfaces.IOrganizations">
+            <summary>
+            Organization
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IOrganizations.GetOrganization(System.String)">
+            <summary>
+            Gets a single organization by name throws a pritunl exception if it couldn't find the organization
+            </summary>
+            <param name="name">The name of the organization</param>
+            <returns>The named organization</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IOrganizations.GetOrganizations">
+            <summary>
+            Gets a list of the organizations on the pritunl server
+            </summary>
+            <returns>List of Organizations</returns>
+        </member>
+        <member name="T:Pritunl.Wrapper.Interfaces.IServers">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IServers.GetServerAsync(System.String)">
+            <summary>
+            Gets a server from the pritunl server by name
+            </summary>
+            <param name="name">The name of the pritunl server</param>
+            <returns>The named server</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IServers.GetServersAsync">
+            <summary>
+            Gets the servers on the pritunl server
+            </summary>
+            <returns>The list of servers</returns>
+        </member>
+        <member name="T:Pritunl.Wrapper.Interfaces.IUsers">
+            <summary>
+            The users interface 
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IUsers.CreateUser(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a user on the pritunl server
+            </summary>
+            <param name="organization">the organization to create the user in</param>
+            <param name="name">the name of the user to create </param>
+            <param name="email">the email of the user to create</param>
+            <param name="disabled">whether the user will disabled on creation</param>
+            <returns>The created user</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IUsers.DeleteUser(System.String,System.String)">
+            <summary>
+            Deletes a user on the pritunl server
+            </summary>
+            <param name="organization">the organization to delete the user from</param>
+            <param name="name">the name of the user to delete</param>
+            <returns>A bool on whether the user was deleted or not</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IUsers.GetKeys(System.String,System.String,Pritunl.Wrapper.Users.KeyType)">
+            <summary>
+            Gets an archive of the users openvpn configs
+            </summary>
+            <param name="organization">the organization to fetch configs from</param>
+            <param name="name">the name of the user to fetch configs from</param>
+            <param name="type">the archive type the config should be in</param>
+            <returns>A byte array of the config data</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IUsers.GetUserAsync(System.String,System.String)">
+            <summary>
+            Gets a user from the organization
+            </summary>
+            <param name="organization">The organization to fetch users from</param>
+            <param name="name">The name of the user to fetch</param>
+            <returns>The named user</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Interfaces.IUsers.GetUsersAsync(System.String)">
+            <summary>
+            Gets a list of users from the organization
+            </summary>
+            <param name="organization">The organization to fetch users from</param>
+            <returns>List of users in the org</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization</remarks>
+        </member>
+        <member name="T:Pritunl.Wrapper.IPritunlRequest">
+            <summary>
+            If you end up using this please make a fork and add what you used it for in the fork and make a pull request
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.IPritunlRequest.DeleteAsync``1(System.String)">
+            <summary>
+            Makes an authorized delete request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint">the endpoint like user</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.IPritunlRequest.GetAsync``1(System.String)">
+            <summary>
+            Makes an authorized get request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint">the endpoint like server</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.IPritunlRequest.PostAsync``1(System.String,System.Object)">
+            <summary>
+            makes an authorized post request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint"></param>
+            <param name="obj">anything you want to pass in to the request</param>
+        </member>
         <member name="T:Pritunl.Wrapper.Models.Organization">
             <summary>
             organizations
@@ -294,9 +418,54 @@
             CIphers
             </summary>
         </member>
+        <member name="F:Pritunl.Wrapper.Models.Cipher.Blowfish128">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Cipher.Blowfish256">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Cipher.Aes128">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Cipher.Aes192">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Cipher.Aes256">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Pritunl.Wrapper.Models.Hash">
             <summary>
             Hashes
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Hash.MD5">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Hash.SHA1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Hash.SHA256">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Hash.SHA12">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Pritunl.Wrapper.Models.NetworkMode">
@@ -304,14 +473,44 @@
             NetworkModes
             </summary>
         </member>
+        <member name="F:Pritunl.Wrapper.Models.NetworkMode.Tunnel">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.NetworkMode.Bridge">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:Pritunl.Wrapper.Models.Protocol">
             <summary>
             Protocols
             </summary>
         </member>
+        <member name="F:Pritunl.Wrapper.Models.Protocol.Udp">
+            <summary>
+            UDP Protocol
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Protocol.Tcp">
+            <summary>
+            TCP Protocol
+            </summary>
+        </member>
         <member name="T:Pritunl.Wrapper.Models.Status">
             <summary>
             The status of the server
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Status.Online">
+            <summary>
+            Online Status
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Models.Status.Offline">
+            <summary>
+            The offline
             </summary>
         </member>
         <member name="T:Pritunl.Wrapper.Models.User">
@@ -509,6 +708,11 @@
             the types
             </summary>
         </member>
+        <member name="T:Pritunl.Wrapper.Organizations">
+            <summary>
+            dont use directly
+            </summary>
+        </member>
         <member name="M:Pritunl.Wrapper.Organizations.GetOrganizations">
             <summary>
             Gets a list of the organizations on the pritunl server
@@ -523,6 +727,75 @@
             <returns>The named organization</returns>
             <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
         </member>
+        <member name="T:Pritunl.Wrapper.PritunlClient">
+            <summary>
+            Wraps the classes around pritunl for easy access 
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.PritunlClient.Users">
+            <summary>
+            The user wrapper
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.PritunlClient.Servers">
+            <summary>
+            The server wrapper
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.PritunlClient.Organizations">
+            <summary>
+            The organization wrapper
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.PritunlClient.PritunlRequester">
+            <summary>
+            Only use this if you need access to an endpoint if you need to access an endpoint that I have not made a wrapper around
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.PritunlClient.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Makes the wrapper for pritunl with all the required data
+            </summary>
+            <param name="apiurl"> The url of the server</param>
+            <param name="apitoken">The token of the api user</param>
+            <param name="apisecret">The secret of the api user</param>
+            <remarks>Had to redo it without statics because khrysus yelled at me for making it with statics because he couldnt add it to the di container</remarks>
+        </member>
+        <member name="T:Pritunl.Wrapper.PritunlRequest">
+            <summary>
+            If you end up using this please make a fork and add what you used it for in the fork and make a pull request
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.PritunlRequest.GetAsync``1(System.String)">
+            <summary>
+            Makes an authorized get request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint">the endpoint like server</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.PritunlRequest.PostAsync``1(System.String,System.Object)">
+            <summary>
+            makes an authorized post request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint"></param>
+            <param name="obj">anything you want to pass in to the request</param>
+            <returns></returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.PritunlRequest.DeleteAsync``1(System.String)">
+            <summary>
+            Makes an authorized delete request to pritunl
+            </summary>
+            <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+            <param name="endpoint">the endpoint like user</param>
+            <returns></returns>
+        </member>
+        <member name="T:Pritunl.Wrapper.Servers">
+            <summary>
+            Servers class dont use directly
+            </summary>
+        </member>
         <member name="M:Pritunl.Wrapper.Servers.GetServersAsync">
             <summary>
             Gets the servers on the pritunl server
@@ -536,6 +809,11 @@
             <param name="name">The name of the pritunl server</param>
             <returns>The named server</returns>
             <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+        </member>
+        <member name="T:Pritunl.Wrapper.Users">
+            <summary>
+            The class for users dont use directly
+            </summary>
         </member>
         <member name="M:Pritunl.Wrapper.Users.GetUsersAsync(System.String)">
             <summary>
@@ -588,6 +866,26 @@
             <returns>A byte array of the config data</returns>
             <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
             <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="T:Pritunl.Wrapper.Users.KeyType">
+            <summary>
+            The type of key you want
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Users.KeyType.Tar">
+            <summary>
+            TAR Format
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Users.KeyType.Zip">
+            <summary>
+            ZIP Format
+            </summary>
+        </member>
+        <member name="F:Pritunl.Wrapper.Users.KeyType.Onc">
+            <summary>
+            I have no fucking clue
+            </summary>
         </member>
     </members>
 </doc>

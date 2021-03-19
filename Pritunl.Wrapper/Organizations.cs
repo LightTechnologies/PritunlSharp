@@ -1,4 +1,5 @@
 ﻿using Pritunl.Wrapper.Exceptions;
+using Pritunl.Wrapper.Interfaces;
 using Pritunl.Wrapper.Models;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,25 @@ using System.Threading.Tasks;
 
 namespace Pritunl.Wrapper
 {
-    public static class Organizations
+    /// <summary>
+    /// dont use directly
+    /// </summary>
+    public class Organizations : IOrganizations
     {
+        private readonly IPritunlRequest _request;
+
+        internal Organizations(IPritunlRequest request)
+        {
+            _request = request;
+        }
+
         /// <summary>
         /// Gets a list of the organizations on the pritunl server
         /// </summary>
         /// <returns>List of Organizations</returns>
-        public static async Task<List<Organization>> GetOrganizations()
+        public async Task<List<Organization>> GetOrganizations()
         {
-            return await PritunlRequest.GetAsync<List<Organization>>("organization");
+            return await _request.GetAsync<List<Organization>>("organization");
         }
         /// <summary>
         /// Gets a single organization by name throws a pritunl exception if it couldn't find the organization
@@ -24,7 +35,7 @@ namespace Pritunl.Wrapper
         /// <param name="name">The name of the organization</param>
         /// <returns>The named organization</returns>
         /// <exception cref="PritunlException"></exception>
-        public static async Task<Organization> GetOrganization(string name)
+        public async Task<Organization> GetOrganization(string name)
         {
             var orgs = await GetOrganizations();
 

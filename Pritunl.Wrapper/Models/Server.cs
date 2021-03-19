@@ -256,21 +256,89 @@ namespace Pritunl.Wrapper.Models
     /// <summary>
     /// CIphers
     /// </summary>
-    public enum Cipher { Blowfish128, Blowfish256, Aes128, Aes192, Aes256 };
+    public enum Cipher
+    { 
+        /// <summary>
+        /// 
+        /// </summary>
+        Blowfish128,
+        /// <summary>
+        /// 
+        /// </summary>
+        Blowfish256,
+        /// <summary>
+        /// 
+        /// </summary>
+        Aes128,
+        /// <summary>
+        /// 
+        /// </summary>
+        Aes192, 
+        /// <summary>
+        /// 
+        /// </summary>
+        Aes256 
+    };
     /// <summary>
     /// Hashes
     /// </summary>
-    public enum Hash { MD5, SHA1, SHA256, SHA12 };
+    public enum Hash 
+    { /// <summary>
+    /// 
+    /// </summary>
+        MD5,
+        /// <summary>
+        /// 
+        /// </summary>
+        SHA1,
+        /// <summary>
+        /// 
+        /// </summary>
+        SHA256, 
+        /// <summary>
+        /// 
+        /// </summary>
+        SHA12
+    };
     /// <summary>
     /// NetworkModes
     /// </summary>
-    public enum NetworkMode { Tunnel, Bridge };
+    public enum NetworkMode 
+    { /// <summary>
+    /// 
+    /// </summary>
+        Tunnel, 
+        /// <summary>
+        /// 
+        /// </summary>
+        Bridge 
+    };
     /// <summary>
     /// Protocols
     /// </summary>
-    public enum Protocol { Udp, Tcp };
+    public enum Protocol 
+    { 
+        /// <summary>
+        /// UDP Protocol
+        /// </summary>
+        Udp,
+        /// <summary>
+        /// TCP Protocol
+        /// </summary>
+        Tcp 
+    };
     /// <summary>
     /// The status of the server
     /// </summary>
-    public enum Status { Online, Offline };
+    public enum Status 
+    { 
+        /// <summary>
+        /// Online Status
+        /// </summary>
+        Online, 
+        /// <summary>
+        /// The offline
+        /// </summary>
+        Offline 
+    };
 }

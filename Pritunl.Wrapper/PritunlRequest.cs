@@ -9,48 +9,74 @@ using System.Threading.Tasks;
 
 namespace Pritunl.Wrapper
 {
-    internal class PritunlRequest
+    /// <summary>
+    /// If you end up using this please make a fork and add what you used it for in the fork and make a pull request
+    /// </summary>
+    public class PritunlRequest : IPritunlRequest
     {
-        private readonly static HttpClient _client;
-        private static readonly Random random = new Random();
-        static PritunlRequest()
+        private readonly HttpClient _client;
+        private readonly static Random random = new Random();
+
+        private readonly string _apisecret;
+
+        internal PritunlRequest(string apiurl, string apitoken, string apisecret)
         {
-            if (string.IsNullOrWhiteSpace(APICredentials.APISecret))
+            if (string.IsNullOrWhiteSpace(apisecret))
                 throw new ArgumentException("APISecret has to be set", "APISecret");
-            if (string.IsNullOrWhiteSpace(APICredentials.APIUrl))
+            if (string.IsNullOrWhiteSpace(apiurl))
                 throw new ArgumentException("APIUrl has to be set", "APIUrl");
-            if (string.IsNullOrWhiteSpace(APICredentials.APIToken))
+            if (string.IsNullOrWhiteSpace(apitoken))
                 throw new ArgumentException("APIToken has to be set", "APIToken");
             if (_client == null)
             {
+                _apisecret = apisecret;
                 var handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (a, b, c, d) => true };
                 _client ??= new HttpClient(handler);
-                _client.BaseAddress = new Uri(APICredentials.APIUrl + "/api");
-                _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Token", APICredentials.APIToken);
+                _client.BaseAddress = new Uri(apiurl);
+                _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Token", apitoken);
             }
         }
-        public static async Task<T> GetAsync<T>(string endpoint)
+        /// <summary>
+        /// Makes an authorized get request to pritunl
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+        /// <param name="endpoint">the endpoint like server</param>
+        /// <returns></returns>
+        public async Task<T> GetAsync<T>(string endpoint)
         {
             GenerateHeaders(endpoint, "get");
             var resp = await _client.GetAsync(endpoint);
 
             return await HandleReturn<T>(resp);
         }
-        public static async Task<T> PostAsync<T>(string endpoint, object obj)
+        /// <summary>
+        /// makes an authorized post request to pritunl
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+        /// <param name="endpoint"></param>
+        /// <param name="obj">anything you want to pass in to the request</param>
+        /// <returns></returns>
+        public async Task<T> PostAsync<T>(string endpoint, object obj)
         {
             GenerateHeaders(endpoint, "post");
             var resp = await _client.PostAsync(endpoint, new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json"));
 
             return await HandleReturn<T>(resp);
         }
-        public static async Task<T> DeleteAsync<T>(string endpoint)
+        /// <summary>
+        /// Makes an authorized delete request to pritunl
+        /// </summary>
+        /// <typeparam name="T">The type to deserialize supports classes structs string bool and byte[]</typeparam>
+        /// <param name="endpoint">the endpoint like user</param>
+        /// <returns></returns>
+        public async Task<T> DeleteAsync<T>(string endpoint)
         {
             GenerateHeaders(endpoint, "delete");
             var resp = await _client.DeleteAsync(endpoint);
-            
+
             return await HandleReturn<T>(resp);
         }
-        private static async Task<T> HandleReturn<T>(HttpResponseMessage resp)
+        private async Task<T> HandleReturn<T>(HttpResponseMessage resp)
         {
             if (resp.StatusCode == System.Net.HttpStatusCode.NotFound)
                 throw new PritunlException("Endpoint not found");
@@ -64,7 +90,7 @@ namespace Pritunl.Wrapper
                 object retobj = await resp.Content.ReadAsByteArrayAsync();
                 return (T)retobj;
             }
-            if(typeof(T) == typeof(bool))
+            if (typeof(T) == typeof(bool))
             {
                 object retobj = resp.IsSuccessStatusCode;
                 return (T)retobj;
@@ -76,7 +102,7 @@ namespace Pritunl.Wrapper
             }
             return JsonConvert.DeserializeObject<T>(await resp.Content.ReadAsStringAsync());
         }
-        private static void GenerateHeaders(string endpoint, string method)
+        private void GenerateHeaders(string endpoint, string method)
         {
             if (_client.DefaultRequestHeaders.Contains("Auth-Nonce"))
                 _client.DefaultRequestHeaders.Remove("Auth-Nonce");
@@ -87,10 +113,10 @@ namespace Pritunl.Wrapper
 
             var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
             var nonce = RandomString(32);
-            var sigstring = $"{APICredentials.APIToken}&{timestamp}&{nonce}&{method.ToUpper()}&/{endpoint}";
+            var sigstring = $"{_apisecret}&{timestamp}&{nonce}&{method.ToUpper()}&/{endpoint}";
             _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Nonce", nonce);
             _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Timestamp", timestamp);
-            _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Signature", CreateToken(sigstring, APICredentials.APISecret));
+            _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Signature", CreateToken(sigstring, _apisecret));
         }
         private static string CreateToken(string message, string secret)
         {
