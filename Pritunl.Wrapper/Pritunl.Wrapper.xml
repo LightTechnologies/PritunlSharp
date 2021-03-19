@@ -1,0 +1,593 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Pritunl.Wrapper</name>
+    </assembly>
+    <members>
+        <member name="T:Pritunl.Wrapper.Exceptions.PritunlException">
+            <summary>
+            Exception that occurs whenever pritunl returns bad 
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Organization">
+            <summary>
+            organizations
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.AuthApi">
+            <summary>
+            The auth api
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.Name">
+            <summary>
+            The name of the <see cref="T:Pritunl.Wrapper.Models.Organization"></see>
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.AuthToken">
+            <summary>
+            the auth token
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.UserCount">
+            <summary>
+            the users in the <see cref="T:Pritunl.Wrapper.Models.Organization"/>
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.AuthSecret">
+            <summary>
+            auth secret
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Organization.Id">
+            <summary>
+            the id of the <see cref="T:Pritunl.Wrapper.Models.Organization"/>
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Server">
+            <summary>
+            pritunl server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.PortWg">
+            <summary>
+            the wireguard port
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.DnsServers">
+            <summary>
+            list of dnsservers
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Protocol">
+            <summary>
+            the protocol the server is listening on
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.MaxDevices">
+            <summary>
+            the max devices the server will allow one user to user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.MaxClients">
+            <summary>
+            the max clients the server will allow to connect
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.LinkPingTimeout">
+            <summary>
+            the timeout on link ping
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.PingTimeout">
+            <summary>
+            the timeout on ping
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Ipv6">
+            <summary>
+            whether the server uses ipv6 or not
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Vxlan">
+            <summary>
+            whether vxlan is enabled on the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.NetworkMode">
+            <summary>
+            the mode the server is on
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.BindAddress">
+            <summary>
+            the address the server is listening on 
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.BlockOutsideDns">
+            <summary>
+            whether the server configs block outside dns. Should be enabled as it prevents dns leaking
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.NetworkStart">
+            <summary>
+            i dont even know what this is im not even going to pretend like i do
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Name">
+            <summary>
+            the name of the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.PingInterval">
+            <summary>
+            the interval the server will ping the client o see if its alive
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.AllowedDevices">
+            <summary>
+            devices allowed to connect
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.UsersOnline">
+            <summary>
+            the users connected to the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Ipv6Firewall">
+            <summary>
+            whether the server has the ipv6 firewall enabled
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.SessionTimeout">
+            <summary>
+            the timeout of the sessions
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.OtpAuth">
+            <summary>
+            whether otpauth is on on the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.MultiDevice">
+            <summary>
+            whether the server will allow people to connect with the amount of devices set in the <see cref="P:Pritunl.Wrapper.Models.Server.MaxDevices"/>
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.SearchDomain">
+            <summary>
+            the search domain
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.LzoCompression">
+            <summary>
+            whether compresion is enabled on the server. Recommended to keep off ad the voracle attack uses it
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.PreConnectMsg">
+            <summary>
+            preconnect message
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.InactiveTimeout">
+            <summary>
+            the timeout for people who are inactive
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.LinkPingInterval">
+            <summary>
+            the interval at what linkping will happen
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Id">
+            <summary>
+            the id of server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.PingTimeoutWg">
+            <summary>
+            the timeout on the wireguard ping timeout
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Uptime">
+            <summary>
+            how long the server has been up in seconds
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.NetworkEnd">
+            <summary>
+            i dont even know
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Network">
+            <summary>
+            again i dont even know
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.DhParamBits">
+            <summary>
+            the amount of bits the duffie huffman key has
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Wg">
+            <summary>
+            whether the server has wireguard enabled
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Port">
+            <summary>
+            the port the server is listening on for connections via openvpn
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.DevicesOnline">
+            <summary>
+            the amount of devices online on the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.NetworkWg">
+            <summary>
+            again im guessing its the subnet of the server no clue will figure out later
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Status">
+            <summary>
+            the <see cref="P:Pritunl.Wrapper.Models.Server.Status"/> of the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.DnsMapping">
+            <summary>
+            whetehr the server dnsmaps
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Hash">
+            <summary>
+            what hashing algo the server uses
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Debug">
+            <summary>
+            whether the server is in debug
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.RestrictRoutes">
+            <summary>
+            whether the server restricts routes
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.UserCount">
+            <summary>
+            the amount of servers assigned to the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Groups">
+            <summary>
+            list of groups on the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.InterClient">
+            <summary>
+            whether the server has interclient on or not
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.ReplicaCount">
+            <summary>
+            how many servers the server will replicate on to
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.Cipher">
+            <summary>
+            what cipher the server uses
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.MssFix">
+            <summary>
+            i dont know
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.Server.JumboFrames">
+            <summary>
+            jumbo_frames idk
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Cipher">
+            <summary>
+            CIphers
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Hash">
+            <summary>
+            Hashes
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.NetworkMode">
+            <summary>
+            NetworkModes
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Protocol">
+            <summary>
+            Protocols
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.Status">
+            <summary>
+            The status of the server
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.User">
+            <summary>
+            pritunl user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.AuthType">
+            <summary>
+            The authtype of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.DnsServers">
+            <summary>
+            the dns servers
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Pin">
+            <summary>
+            users pin
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.DnsSuffix">
+            <summary>
+            the dns suffix
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Servers">
+            <summary>
+            the servers the user is on
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Disabled">
+            <summary>
+            whether the user is disabled or not
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.NetworkLinks">
+            <summary>
+            the links of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.PortForwarding">
+            <summary>
+            what ports the user has forwarded
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Id">
+            <summary>
+            the id of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.OrganizationName">
+            <summary>
+            the <see cref="T:Pritunl.Wrapper.Models.Organization"/> name the user is in 
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Type">
+            <summary>
+            the type of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Email">
+            <summary>
+            the email of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Status">
+            <summary>
+            the status of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.DnsMapping">
+            <summary>
+            dns mapping
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.OtpSecret">
+            <summary>
+            the otp secret
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.ClientToClient">
+            <summary>
+            whether clientotclient is on
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.MacAddresses">
+            <summary>
+            the macaddresses
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.YubicoId">
+            <summary>
+            the yubico id
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Sso">
+            <summary>
+            sso
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.BypassSecondary">
+            <summary>
+            whether the user bypasses the secondary authentication
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Groups">
+            <summary>
+            the groups the user is in
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Audit">
+            <summary>
+            the audit 
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Name">
+            <summary>
+            the name of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.Gravatar">
+            <summary>
+            does the user use gravatar?
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.User.OtpAuth">
+            <summary>
+            whether the otp auth is on
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.UserServer">
+            <summary>
+            The servers the user can connect to
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.Status">
+            <summary>
+            ths status of the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.Platform">
+            <summary>
+            the platform
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.ServerId">
+            <summary>
+            the server id
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.VirtAddress6">
+            <summary>
+            the virtual ipv6 addresses
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.VirtAddress">
+            <summary>
+             the virtual addresses
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.Name">
+            <summary>
+            the name of the server
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.RealAddress">
+            <summary>
+            the real address of the user
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.ConnectedSince">
+            <summary>
+            how long the server has been connected since
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.Id">
+            <summary>
+            the id 
+            </summary>
+        </member>
+        <member name="P:Pritunl.Wrapper.Models.UserServer.DeviceName">
+            <summary>
+            the name of the device
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.AuthType">
+            <summary>
+            ok for real fuck doing them all i do NOT have the time needed to do it for all 15 or so auth tyoes ill come back and do them at a later date 
+            </summary>
+        </member>
+        <member name="T:Pritunl.Wrapper.Models.TypeEnum">
+            <summary>
+            the types
+            </summary>
+        </member>
+        <member name="M:Pritunl.Wrapper.Organizations.GetOrganizations">
+            <summary>
+            Gets a list of the organizations on the pritunl server
+            </summary>
+            <returns>List of Organizations</returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.Organizations.GetOrganization(System.String)">
+            <summary>
+            Gets a single organization by name throws a pritunl exception if it couldn't find the organization
+            </summary>
+            <param name="name">The name of the organization</param>
+            <returns>The named organization</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+        </member>
+        <member name="M:Pritunl.Wrapper.Servers.GetServersAsync">
+            <summary>
+            Gets the servers on the pritunl server
+            </summary>
+            <returns>The list of servers</returns>
+        </member>
+        <member name="M:Pritunl.Wrapper.Servers.GetServerAsync(System.String)">
+            <summary>
+            Gets a server from the pritunl server by name
+            </summary>
+            <param name="name">The name of the pritunl server</param>
+            <returns>The named server</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+        </member>
+        <member name="M:Pritunl.Wrapper.Users.GetUsersAsync(System.String)">
+            <summary>
+            Gets a list of users from the organization
+            </summary>
+            <param name="organization">The organization to fetch users from</param>
+            <returns>List of users in the org</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Users.GetUserAsync(System.String,System.String)">
+            <summary>
+            Gets a user from the organization
+            </summary>
+            <param name="organization">The organization to fetch users from</param>
+            <param name="name">The name of the user to fetch</param>
+            <returns>The named user</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Users.CreateUser(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a user on the pritunl server
+            </summary>
+            <param name="organization">the organization to create the user in</param>
+            <param name="name">the name of the user to create </param>
+            <param name="email">the email of the user to create</param>
+            <param name="disabled">whether the user will disabled on creation</param>
+            <returns>The created user</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Users.DeleteUser(System.String,System.String)">
+            <summary>
+            Deletes a user on the pritunl server
+            </summary>
+            <param name="organization">the organization to delete the user from</param>
+            <param name="name">the name of the user to delete</param>
+            <returns>A bool on whether the user was deleted or not</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+        <member name="M:Pritunl.Wrapper.Users.GetKeys(System.String,System.String,Pritunl.Wrapper.Users.KeyType)">
+            <summary>
+            Gets an archive of the users openvpn configs
+            </summary>
+            <param name="organization">the organization to fetch configs from</param>
+            <param name="name">the name of the user to fetch configs from</param>
+            <param name="type">the archive type the config should be in</param>
+            <returns>A byte array of the config data</returns>
+            <exception cref="T:Pritunl.Wrapper.Exceptions.PritunlException"></exception>
+            <remarks>Throws a <see cref="T:Pritunl.Wrapper.Exceptions.PritunlException"/> if it could't find the organization or the user</remarks>
+        </member>
+    </members>
+</doc>
