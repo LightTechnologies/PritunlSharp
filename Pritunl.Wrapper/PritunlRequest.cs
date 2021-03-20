@@ -15,26 +15,25 @@ namespace Pritunl.Wrapper
     public class PritunlRequest : IPritunlRequest
     {
         private readonly HttpClient _client;
-        private readonly static Random random = new Random();
-
+        private static readonly Random random = new Random();
+        private readonly string _apitoken;
         private readonly string _apisecret;
-
-        internal PritunlRequest(string apiurl, string apitoken, string apisecret)
+        public PritunlRequest(string apiurl, string apitoken, string apisecret)
         {
             if (string.IsNullOrWhiteSpace(apisecret))
                 throw new ArgumentException("APISecret has to be set", "APISecret");
             if (string.IsNullOrWhiteSpace(apiurl))
                 throw new ArgumentException("APIUrl has to be set", "APIUrl");
-            if (string.IsNullOrWhiteSpace(apitoken))
+            if (string.IsNullOrWhiteSpace(apisecret))
                 throw new ArgumentException("APIToken has to be set", "APIToken");
-            if (_client == null)
-            {
-                _apisecret = apisecret;
-                var handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (a, b, c, d) => true };
-                _client ??= new HttpClient(handler);
-                _client.BaseAddress = new Uri(apiurl);
-                _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Token", apitoken);
-            }
+
+            var handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (a, b, c, d) => true };
+            _client ??= new HttpClient(handler);
+            _client.BaseAddress = new Uri(apiurl);
+            _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Token", apitoken);
+
+            _apisecret = apisecret;
+            _apitoken = apitoken;
         }
         /// <summary>
         /// Makes an authorized get request to pritunl
@@ -113,7 +112,7 @@ namespace Pritunl.Wrapper
 
             var timestamp = DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString();
             var nonce = RandomString(32);
-            var sigstring = $"{_apisecret}&{timestamp}&{nonce}&{method.ToUpper()}&/{endpoint}";
+            var sigstring = $"{_apitoken}&{timestamp}&{nonce}&{method.ToUpper()}&/{endpoint}";
             _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Nonce", nonce);
             _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Timestamp", timestamp);
             _client.DefaultRequestHeaders.TryAddWithoutValidation("Auth-Signature", CreateToken(sigstring, _apisecret));

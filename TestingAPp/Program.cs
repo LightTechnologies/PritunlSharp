@@ -11,7 +11,6 @@ namespace TestingAPp
         static async Task Main(string[] args)
         {
             var pritunl = new PritunlClient("https://51.222.29.230:50000", "K4g99pZpt66HFIDjiXuRlSEKiXRa9reO", "LuplBRrrWJnh1Iy9ZDPLIuk6hNpGBCbZ");
-            Console.WriteLine(await pritunl.PritunlRequester.GetAsync<string>("server"));
             Console.WriteLine(await pritunl.Servers.GetServersAsync());
 
             //Console.WriteLine(await Users.CreateUser("Test", "TestUser"));
