@@ -1,0 +1,28 @@
+using Pritunl.Wrapper.Exceptions;
+using Pritunl.Wrapper.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Pritunl.Wrapper
+{
+    public class Hosts
+    {
+        public static async Task<List<Host>> GetHostsAsync()
+        {
+            return await PritunlRequest.GetAsync<List<Host>>("host");
+        }
+
+        public static async Task<Host> GetHostsAsync(string name)
+        {
+            var hosts = await GetHostsAsync();
+
+            if (!hosts.Any(x => x.Name == name))
+                throw new PritunlException("Couldn't find the organization");
+
+            return hosts.First(x => x.Name == name);
+        }
+    }
+}
