@@ -1,0 +1,87 @@
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Pritunl.Wrapper.Models
+{
+    public class Host
+    {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("hostname")]
+        public string Hostname { get; set; }
+
+        [JsonProperty("instance_id")]
+        public object InstanceId { get; set; }
+
+        [JsonProperty("status")]
+        public string Status { get; set; }
+
+        [JsonProperty("uptime")]
+        public int Uptime { get; set; }
+
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("user_count")]
+        public int UserCount { get; set; }
+
+        [JsonProperty("users_online")]
+        public int UsersOnline { get; set; }
+
+        [JsonProperty("local_networks")]
+        public List<string> LocalNetworks { get; set; }
+
+        [JsonProperty("public_addr")]
+        public string PublicAddr { get; set; }
+
+        [JsonProperty("public_address")]
+        public string PublicAddress { get; set; }
+
+        [JsonProperty("public_addr6")]
+        public object PublicAddr6 { get; set; }
+
+        [JsonProperty("public_address6")]
+        public string PublicAddress6 { get; set; }
+
+        [JsonProperty("routed_subnet6")]
+        public object RoutedSubnet6 { get; set; }
+
+        [JsonProperty("routed_subnet6_wg")]
+        public object RoutedSubnet6Wg { get; set; }
+
+        [JsonProperty("proxy_ndp")]
+        public bool ProxyNdp { get; set; }
+
+        [JsonProperty("link_addr")]
+        public string LinkAddr { get; set; }
+
+        [JsonProperty("link_address")]
+        public string LinkAddress { get; set; }
+
+        [JsonProperty("sync_address")]
+        public string SyncAddress { get; set; }
+
+        [JsonProperty("local_address")]
+        public string LocalAddress { get; set; }
+
+        [JsonProperty("local_addr")]
+        public string LocalAddr { get; set; }
+
+        [JsonProperty("local_address6")]
+        public string LocalAddress6 { get; set; }
+
+        [JsonProperty("local_addr6")]
+        public string LocalAddr6 { get; set; }
+
+        [JsonProperty("availability_group")]
+        public string AvailabilityGroup { get; set; }
+    }
+
+
+}
